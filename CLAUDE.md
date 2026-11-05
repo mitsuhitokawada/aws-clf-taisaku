@@ -40,4 +40,4 @@
 
 ## 次にやること
 - D1 から精読とクイズ。ユーザーが貼った間違いを解剖して反映する。
-- 未着手：D3 の管理・連携・移行の分野の追加問題（Organizations、Control Tower、Systems Manager、Service Catalog、移行のサービス）。
+- 2026-11-05 に8分野すべての追加問題を入れた（合計324問）。旧名・新名：AppStream 2.0→WorkSpaces Applications、Application Migration Service→AWS Transform MGN。Migration Hub、Application Discovery Service、WorkSpaces Secure Browser は新規受付を終了。
