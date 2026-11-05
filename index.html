@@ -509,9 +509,9 @@ const PRODUCTS = [
  {g:'mig',n:'AWS Application Migration Service',f:'略して MGN',d:'サーバーをそのまま AWS へ（リホスト）',v:'',k:0},
  {g:'mig',n:'AWS DMS',f:'Database Migration Service',d:'DB の移行。停止時間を最小に、継続的にレプリケーション',v:'',k:1},
  {g:'mig',n:'AWS SCT',f:'Schema Conversion Tool',d:'違う種類の DB へスキーマを変換',v:'',k:0},
- {g:'mig',n:'AWS Application Discovery Service',f:'',d:'オンプレミスのサーバーの情報を集める',v:'',k:0},
+ {g:'mig',n:'AWS Application Discovery Service',f:'',d:'オンプレミスのサーバーの構成・使用状況・依存関係を集める（移行前の調査）',v:'新規受付終了（試験ガイドには載っている）',k:0},
  {g:'mig',n:'Migration Evaluator',f:'',d:'移行の費用を試算・ビジネスケース',v:'',k:0},
- {g:'mig',n:'AWS Migration Hub',f:'',d:'移行の進み具合を一か所で追跡',v:'',k:0},
+ {g:'mig',n:'AWS Migration Hub',f:'',d:'移行の進み具合を一か所で追跡',v:'新規受付終了（試験ガイドには載っている）',k:0},
 ];
 
 /* ---------- 罠の型（条件の読み方） ---------- */
@@ -552,6 +552,7 @@ const PAIRS = [
  {a:'Amazon Athena：S3 にそのまま SQL（サーバーレス）',b:'Amazon Redshift：データウェアハウス（大量の分析）',j:'「S3 のデータを、サーバーなしで、たまに分析」→ Athena。「大規模な DWH、BI」→ Redshift。'},
  {a:'Amazon Polly：テキスト → 音声',b:'Amazon Transcribe：音声 → テキスト',j:'向きで判断。話す＝Polly、書き起こす＝Transcribe。'},
  {a:'AWS Config：設定の履歴とルールへの準拠',b:'AWS Trusted Advisor：AWS が用意したベストプラクティスの点検',j:'「自分で決めたルールに合っているか、設定の変化の履歴」→ Config。'},
+ {a:'AWS Application Discovery Service：移行前に、今あるサーバーの構成・使用状況・依存関係を調べる',b:'AWS Migration Hub：移行が始まってから、進み具合を一か所で追う',j:'「移行を始める前に」「依存関係」→ Discovery。「進捗」「状況を一か所で」→ Migration Hub。'},
 ];
 
 /* ---------- つまずき総ざらい ---------- */
@@ -709,7 +710,7 @@ Q(1,'オンプレミスの Oracle DB を、停止時間を最小限にして Ama
  '<b>正解：AWS SCT と AWS DMS</b>。違う種類の DB（Oracle → PostgreSQL 互換）なので、スキーマを SCT で変換し、データは DMS で停止時間を最小に移す。<br>×Storage Gateway と Backup：ストレージの話。<br>×Application Discovery Service：サーバーの調査だけ。<br>×Direct Connect と Config：接続と設定の記録。');
 Q(1,'移行を始める前に、オンプレミスのサーバーの構成や使用状況、依存関係の情報を集めたい。最も適切なサービスはどれか。',
  ['AWS Application Discovery Service','AWS Migration Hub','AWS Application Migration Service','AWS Elastic Disaster Recovery'],[0],
- '<b>正解：AWS Application Discovery Service</b>（調査）。<br>×Migration Hub：移行の進み具合の追跡。<br>×Application Migration Service：実際に移す（リホスト）。<br>×Elastic Disaster Recovery：災害対策。<div class="mem">調べる（Discovery）→ 見積もる（Migration Evaluator）→ 移す（Application Migration Service）→ 追う（Migration Hub）。</div>');
+ '<b>正解：AWS Application Discovery Service</b>（調査）。<br>×Migration Hub：移行の進み具合の追跡。<br>×Application Migration Service：実際に移す（リホスト）。<br>×Elastic Disaster Recovery：災害対策。<br>合図：「移行を始める前に」「構成・使用状況・依存関係」＝まだ何も移していない＝調査の段階。Migration Hub は移行が始まってからの「進み具合」。<div class="mem">調べる（Discovery）→ 見積もる（Migration Evaluator）→ 移す（Application Migration Service）→ 追う（Migration Hub）。</div><div class="warn">名前の注意：Application Discovery Service と Migration Hub は新規受付を終了したが、試験ガイドには載っているので出る。Application Migration Service は公式ドキュメントでは AWS Transform MGN。</div>');
 
 /* ---- ドメイン2：セキュリティとコンプライアンス ---- */
 Q(2,'AWS 責任共有モデルで、Amazon EC2 インスタンスのゲスト OS のセキュリティパッチを適用する責任は誰にあるか。',
@@ -1033,6 +1034,7 @@ QS.forEach((q,i)=>q.id='q'+i);
    ユーザーが間違えた・迷った問題の、問題文の先頭の文字列をここに足す */
 const NW_HEADS = [
   // 例：'AWS 責任共有モデルで、Amazon EC2',
+  '移行を始める前に、オンプレミスのサーバーの構成や使用状況',
 ];
 QS.forEach(q=>{if(NW_HEADS.some(h=>q.q.startsWith(h)))q.nw=true});
 
