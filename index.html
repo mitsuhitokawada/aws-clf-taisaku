@@ -708,7 +708,7 @@ Q(1,'AWS が大量の利用者の需要をまとめることで単価を下げ�
  '<b>正解：規模の経済（Economies of scale）</b>。合図は「大量」「単価が下がる」「値下げ」。');
 Q(1,'オンプレミスの Oracle DB を、停止時間を最小限にして Amazon Aurora PostgreSQL 互換に移したい。使うサービスの組み合わせとして最も適切なものはどれか。',
  ['AWS Schema Conversion Tool（SCT）と AWS Database Migration Service（DMS）','AWS Storage Gateway と AWS Backup','AWS Application Discovery Service と Amazon S3','AWS Direct Connect と AWS Config'],[0],
- '<b>正解：AWS SCT と AWS DMS</b>。違う種類の DB（Oracle → PostgreSQL 互換）なので、スキーマを SCT で変換し、データは DMS で停止時間を最小に移す。<br>×Storage Gateway と Backup：ストレージの話。<br>×Application Discovery Service：サーバーの調査だけ。<br>×Direct Connect と Config：接続と設定の記録。');
+ '<b>正解：AWS SCT と AWS DMS</b>。違う種類の DB（Oracle → PostgreSQL 互換）なので、スキーマを SCT で変換し、データは DMS で停止時間を最小に移す。<br>×Storage Gateway と Backup：ストレージの話。<br>×Application Discovery Service：サーバーの調査だけ。<br>×Direct Connect と Config：接続と設定の記録。<br>合図：「DB を移す」→ DMS。「Oracle → PostgreSQL のように種類が変わる」→ SCT も足す。「停止時間を最小」→ DMS（移している間も元の DB は動き続け、変更を流し続ける）。<div class=\"mem\">SCT＝設計図（スキーマ）の翻訳係、DMS＝中身（データ）の引っ越し業者。同じ種類（Oracle → Oracle）なら引っ越し業者（DMS）だけでよい。</div>');
 Q(1,'移行を始める前に、オンプレミスのサーバーの構成や使用状況、依存関係の情報を集めたい。最も適切なサービスはどれか。',
  ['AWS Application Discovery Service','AWS Migration Hub','AWS Application Migration Service','AWS Elastic Disaster Recovery'],[0],
  '<b>正解：AWS Application Discovery Service</b>（調査）。<br>×Migration Hub：移行の進み具合の追跡。<br>×Application Migration Service：実際に移す（リホスト）。<br>×Elastic Disaster Recovery：災害対策。<br>合図：「移行を始める前に」「構成・使用状況・依存関係」＝まだ何も移していない＝調査の段階。Migration Hub は移行が始まってからの「進み具合」。<div class="mem">調べる（Discovery）→ 見積もる（Migration Evaluator）→ 移す（Application Migration Service）→ 追う（Migration Hub）。</div><div class="warn">名前の注意：Application Discovery Service と Migration Hub は新規受付を終了したが、試験ガイドには載っているので出る。Application Migration Service は公式ドキュメントでは AWS Transform MGN。</div>');
@@ -1038,6 +1038,7 @@ const NW_HEADS = [
   '移行を始める前に、オンプレミスのサーバーの構成や使用状況',
   'ある会社は、AWS Well-Architected フレームワークの持続可能性の柱にもとづいて',
   'ある会社は移行の対象を整理している。ある業務アプリケーションは、法律で',
+  'オンプレミスの Oracle DB を、停止時間を最小限にして',
 ];
 QS.forEach(q=>{if(NW_HEADS.some(h=>q.q.startsWith(h)))q.nw=true});
 
