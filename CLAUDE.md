@@ -21,6 +21,7 @@
 - SECTIONS（0=総仕上げ、1〜4=ドメイン。配点 24/30/34/12）、PLAN（受験日から逆算）、READ（精読）、PGROUPS・PRODUCTS（早見表、k:1=★）、TRAPS（TRAP 01〜12）、PAIRS、STUMBLE、TECH、GLOSS、QS（問題）。
 - 問題の形：`Q(s,'問題文',['選択肢',...],[正解の添字],'解説HTML','TRAP 06')`。追加分は `QS.push({s,q,o,a,e,trap,src})`（src＝根拠の公式URL。解説の下にリンクが出る）。
 - 「/* ==== 追加分（公式資料をもとにエージェントが作成）… ==== */」のブロックは、2026-11-05 に公式ドキュメントから作った190問など。
+- 略語の自動注記：精読・問題文・解説では、用語集 GLOSS の略語（英字のもの）に、ブロックごとに最初の1回だけ正式名を小さく添える（関数 annot）。新しい略語を使ったら GLOSS に足せば自動で付く。
 - 保存（localStorage）：aws_wrong、aws_hist、aws_resume、aws_flag、aws_theme、aws_exam。
 
 ## 守ること（コード）
