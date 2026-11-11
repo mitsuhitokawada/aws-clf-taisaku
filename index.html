@@ -245,7 +245,7 @@ const READ = [
 <div class="mem">ロール＝「役の衣装」。着ている間だけその権限。EC2 にアクセスキーを書き込まず、衣装（ロール）を着せる。</div>`},
  {s:2, t:'2.4 セキュリティの部品と情報源', h:`
 <div class="tw"><table><tr><th>サービス</th><th>守るもの</th></tr>
-<tr><td>AWS WAF</td><td>Web アプリ（第7層）への攻撃。SQL インジェクション、クロスサイトスクリプティング、IP 制限</td></tr>
+<tr><td>AWS WAF</td><td>Web アプリ（第7層）への攻撃。SQL インジェクション、クロスサイトスクリプティング、IP 制限。守り方のルールは <b>Web ACL</b> にまとめる。ルールを一から作れないときは、AWS（AWS Managed Rules）や AWS Marketplace の販売者が用意した<b>マネージドルールグループ</b>をそのまま追加できる。同じ IP からの大量のリクエストは<b>レートベースのルール</b>で制限</td></tr>
 <tr><td>AWS Shield</td><td>DDoS 攻撃。Standard は全員に自動で無料。Advanced は有料で、24時間の対応チームと費用の保護</td></tr>
 <tr><td>AWS Firewall Manager</td><td>複数アカウントの WAF・Shield・セキュリティグループのルールを一括管理</td></tr>
 <tr><td>Amazon GuardDuty</td><td>脅威の検出</td></tr>
