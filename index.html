@@ -550,6 +550,7 @@ const PAIRS = [
  {a:'AWS Budgets：予算を超えそうなら通知',b:'AWS Cost Explorer：過去のコストを分析・予測',j:'「通知、アラート」→ Budgets。「グラフ、傾向、分析」→ Cost Explorer。見積もりは Pricing Calculator。'},
  {a:'AWS Trusted Advisor：ベストプラクティスの点検（コスト・セキュリティなど）',b:'AWS Health Dashboard：AWS 側の障害の影響',j:'「推奨、点検、改善」→ Trusted Advisor。「AWS の障害、メンテナンス」→ Health Dashboard。'},
  {a:'AWS Organizations：複数アカウントの管理、一括請求',b:'AWS Control Tower：複数アカウントの環境を、ルールつきで自動で用意',j:'「一括請求、SCP」→ Organizations。「ランディングゾーン、ガードレール、自動で用意」→ Control Tower。'},
+ {a:'管理アカウント：組織を作った1つのアカウント（本社）。請求をまとめて払い、メンバーを招待・管理する。SCP（サービスコントロールポリシー）は効かない',b:'メンバーアカウント：組織に入っているほかのアカウント（支社）。SCP の柵が、そのアカウントのルートユーザーも含めて全員に効く',j:'「組織を作った・請求を払う・SCP が効かない」→ 管理アカウント。「組織に招かれた・SCP で制限される」→ メンバーアカウント。管理アカウントは柵の外なので、日常の作業には使わない。'},
  {a:'AWS IAM Identity Center：社員の複数アカウントへのシングルサインオン',b:'Amazon Cognito：アプリの利用者（お客様）のログイン',j:'「社員・従業員」→ IAM Identity Center。「アプリのユーザー、モバイル」→ Cognito。'},
  {a:'AWS Elastic Beanstalk：コードを上げるだけ（環境は自動）',b:'AWS CloudFormation：インフラをテンプレートで定義',j:'「開発者がインフラを気にせず」→ Beanstalk。「インフラをコードで、繰り返し作る」→ CloudFormation。'},
  {a:'Amazon Athena：S3 にそのまま SQL（サーバーレス）',b:'Amazon Redshift：データウェアハウス（大量の分析）',j:'「S3 のデータを、サーバーなしで、たまに分析」→ Athena。「大規模な DWH、BI」→ Redshift。'},
@@ -1060,6 +1061,7 @@ const NW_HEADS = [
   'クラウドの「俊敏性（Agility）」の説明として',
   '会社は、オンプレミスのアプリケーションを、変更せずにできるだけ早く',
   '小さな開発チームが、Web アプリを一般的な攻撃（SQL インジェクションなど）',
+  'AWS Organizations のサービスコントロールポリシー（SCP）について',
 ];
 QS.forEach(q=>{if(NW_HEADS.some(h=>q.q.startsWith(h)))q.nw=true});
 
